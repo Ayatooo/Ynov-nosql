@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RedisImportController;
-use App\Http\Controllers\RedisDataController;
+use App\Http\Controllers\SchoolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +18,5 @@ use App\Http\Controllers\RedisDataController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/import-csv', [RedisImportController::class, 'importCSV']);
-Route::get('/schools', [RedisDataController::class, 'groupBySchool']);
+Route::post('/import-csv', [RedisImportController::class, 'importCSV']);
+Route::get('/schools/grouped', [SchoolController::class, 'groupBySchool']);
