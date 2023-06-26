@@ -25,7 +25,7 @@ docker run --rm --interactive --tty \
 composer install --ignore-platform-reqs
 ```
 
-- Copy and paste the .env.example in the .env, you don't have to  change it 
+- Copy and paste the .env.example in the .env : ```cp .env.example .env```
 
 - Run : ```./vendor/bin/sail up```
 
