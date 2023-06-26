@@ -1,4 +1,5 @@
-# NoSQL 🚩
+# NoSQL - Redis 🚩
+Redis => key-value
 ## Installation ⬇️
 ### To run the project / import the csv, you'll need :
 
