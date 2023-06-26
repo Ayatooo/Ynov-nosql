@@ -8,7 +8,7 @@ class RedisImportController extends Controller
 {
     public function importCSV(Request $request)
     {
-        $csvFile = storage_path('app/contacts.csv');
+        $csvFile = public_path('contacts.csv');
 
         $redis = new Client([
             'scheme' => 'tcp',
