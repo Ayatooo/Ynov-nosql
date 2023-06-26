@@ -25,20 +25,9 @@ docker run --rm --interactive --tty \
 composer install --ignore-platform-reqs
 ```
 
-- Then install laravel/sail :
-```
-docker run --rm --interactive --tty \
---volume $PWD:/app \
-composer require laravel/sail --dev
-```
-
 - Copy and paste the .env.example in the .env, you don't have to  change it 
 
 - Run : ```./vendor/bin/sail up```
-
-- Select ```redis``` (it's the number 3)
-
-- Afeter the installation, if the container is not running, run again ```./vendor/bin/sail up```
 
 - Connect your RedisInsight-v2 client to the database with this configuration :
 ```Host : 127.0.0.1```
