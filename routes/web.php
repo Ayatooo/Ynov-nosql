@@ -18,5 +18,7 @@ use App\Http\Controllers\SchoolController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/import-csv', [RedisImportController::class, 'importCSV']);
+Route::any('/import-csv', [RedisImportController::class, 'importCSV']);
+Route::any('/clear', [RedisImportController::class, 'clear']);
 Route::get('/schools/grouped', [SchoolController::class, 'groupBySchool']);
+Route::get('/schools', [SchoolController::class, 'index']);

@@ -1,27 +1,53 @@
-# Installation ⬇️
-To run the project, you'll need :
+# NoSQL 🚩
+## Installation ⬇️
+### To run the project / import the csv, you'll need :
 
-    php 8+
-    docker fully installed (client on windows or wsl)
-    composer 2.0+
-    node v17+
-    Clone the projet and navigate inside with your terminal to execute the next commands
+- install WSL 2 : https://learn.microsoft.com/fr-fr/windows/wsl/install
 
-Then,
+- Install Git : ```sudo apt-get install git```
 
-    docker run --rm --interactive --tty \
-    --volume $PWD:/app \
-    composer install --ignore-platform-reqs
-And,
+- Install Docker Desktop : https://www.docker.com/products/docker-desktop/
 
-    docker run --rm --interactive --tty \
-    --volume $PWD:/app \
-    composer require laravel/sail --dev
+- Launch the docker client
 
-Then,
+- Install the RedisInsight-v2 Client on windows : https://docs.redis.com/latest/ri/installing/install-redis-desktop/ 
 
-    copy and paste the .env.example in the .env, you don't have to  change it
-    run : npm install
-    run : php artisan sail:install : and select redis (3)
-    run : ./vendor/bin/sail up
-    after the installation, you can rerun if it's down
+Now on your WSL terminal follow these instructions :
+
+- Clone the repository on : ```git clone https://github.com/Ayatooo/Ynov-nosql.git```
+
+- Move inside the repository : ```cd /Ynov-nosql ```
+
+- Install the dependencies : 
+```
+docker run --rm --interactive --tty \
+--volume $PWD:/app \
+composer install --ignore-platform-reqs
+```
+
+- Then install laravel/sail :
+```
+docker run --rm --interactive --tty \
+--volume $PWD:/app \
+composer require laravel/sail --dev
+```
+
+- Copy and paste the .env.example in the .env, you don't have to  change it 
+
+- Run : ```sail up```
+
+- Select ```redis``` (it's the number 3)
+
+- Afeter the installation, if the container is not running, run again ```sail up ```
+
+- Connect your RedisInsight-v2 client to the database with this configuration :
+```Host : 127.0.0.1```
+```Port : 6379```
+```Database alias: 127.0.0.1:6379```
+
+- Now, you will see your database clear
+
+- You can import the csv file, you only need to make a get or post request on ```http://localhost/import-csv```and wait
+
+- Atfer you get the status message (success), refresh the RedisInsight-v2 client database, and now it has been fulfilled
+

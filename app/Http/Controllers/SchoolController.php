@@ -27,22 +27,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        try {
-            $keys = $this->redis->keys('*');
-
-            $schools = [];
-    
-            foreach ($keys as $key) {
-                $keyType = $this->redis->type($key);
-    
-                if ($keyType == 'hash') {
-                    $schools[] = $this->redis->hgetall($key);
-                }
-            }
-            return response()->json($schools);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
+        //
     }
 
     /**
