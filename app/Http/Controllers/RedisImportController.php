@@ -16,30 +16,33 @@ class RedisImportController extends Controller
             'port' => 6379,
         ]);
 
+        $redis->flushall();
+
+
         try {
             $redis->connect();
         } catch (\Exception $e) {
             dd($e);
         }
 
-        if (($handle = fopen($csvFile, 'r')) !== false) {
-            while (($data = fgetcsv($handle)) !== false) {
-                $key = $data[0];
-                $value = [
-                    'title' => $data[0],
-                    'name' => $data[1],
-                    'address' => $data[2],
-                    'realAddress' => $data[3],
-                    'departement' => $data[4],
-                    'country' => $data[5],
-                    'tel' => $data[6],
-                    'email' => $data[7],
-                ];
-                $redis->hmset($key, $value);
-            }
-            fclose($handle);
-        }
+        $file = fopen($csvFile, 'r');
+        $header = fgetcsv($file);
 
-        return 'Importation des données CSV terminée ! 🚩';
+
+        while (($data = fgetcsv($file)) !== false) {
+            $record = array_combine($header, $data);
+            $uuid = uniqid();
+            $redis->hmset($uuid, [
+                    'title' => $record['title'],
+                    'name' => $record['name'],
+                    'adress' => $record['adress'],
+                    'realAdress' => $record['realAdress'],
+                    'departement' => $record['departement'],
+                    'country' => $record['country'],
+                    'tel' => $record['tel'],
+                    'email' => $record['email'],
+            ]);
+        }
+        return 'Importation des données CSV terminée !';
     }
 }
